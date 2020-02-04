@@ -159,8 +159,28 @@ func (client *api_client) send_request(method string, path string, data string) 
 	var err error
 
 	if client.debug {
-		log.Printf("api_client.go: method='%s', path='%s', full uri (derived)='%s', data='%s'\n", method, path, full_uri, data)
+		log.Printf("api_client.go: method='%s', path='%s', full uri (derived)='%s', data set is ='%s'\n", method, path, full_uri, data)
+                log.Printf("api_client.go: first Time")
 	}
+
+        
+                 body1 := strings.Replace(data, ":", "=", -1)
+                 log.Printf("Replace 1 %s\n", body1)
+                 body2 := strings.Replace(body1, ",", "&", -1)
+                 log.Printf("Replace 2 %s\n", body2)
+                body3 := strings.Replace(body2, "\"", "", -1)
+                 log.Printf("Replace 3 %s\n", body3)
+                 body4 := strings.Replace(body3, "{", "\"", -1)
+                 log.Printf("Replace 3 %s\n", body4)
+                 data = strings.Replace(body4, "}", "\"", -1)
+                 log.Printf("Replace 3 %s\n", data)
+
+
+        if client.debug {
+                log.Printf("api_client.go: method='%s', path='%s', full uri (derived)='%s', data='%s'\n", method, path, full_uri, data)
+                log.Printf("second time")
+        }
+
 
 	buffer := bytes.NewBuffer([]byte(data))
 
@@ -210,17 +230,7 @@ func (client *api_client) send_request(method string, path string, data string) 
 			body = string(data)
 		}
 	
-
-                 body1 := strings.Replace(body, ":", "=", -1)
-                 fmt.Printf("Replace 1 %s\n", body1)
-                 body2 := strings.Replace(body1, ",", "&", -1)
-                 fmt.Printf("Replace 2 %s\n", body2)
-                body3 := strings.Replace(body2, "\"", "", -1)
-                 fmt.Printf("Replace 3 %s\n", body3)
-                 body4 := strings.Replace(body3, "{", "\"", -1)
-                 fmt.Printf("Replace 3 %s\n", body4)
-                 body = strings.Replace(body4, "}", "\"", -1)
-                 fmt.Printf("Replace 3 %s\n", body)
+		  log.Printf("BODY %s\n", body)
 
 
 
