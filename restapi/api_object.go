@@ -204,7 +204,7 @@ log.Printf("insode api_object 2 data = %s",obj.data)
 		return err
 	}
 
-	 log.Printf("inside api_object.go before if statement")
+	 log.Printf("inside for testing api_object.go before if statement")
 
   log.Printf("api_object.go: Parsing response from POST to update internal structures (write_returns_object=%t, create_returns_object=%t)...\n",
                                 obj.api_client.write_returns_object, obj.api_client.create_returns_object)
